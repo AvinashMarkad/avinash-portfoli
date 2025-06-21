@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Avinash Markad</title>
+    <meta
+      name="description"
+      content="Portfolio of Avinash Markad, Full Stack Developer, NLP Engineer, and Data Scientist"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      :root {
+        --primary: #d4a373;
+        --primary-light: #faedcd;
+        --primary-dark: #6c584c;
+        --secondary: #f8f9fa;
+        --secondary-dark: #d4a373;
+        --dark: #343a40;
+        --light: #fefae0;
+        --gray: #6c757d;
+        --button-dark: #495057;
+        --button-darker: #343a40;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: var(--dark);
+        background-color: var(--light);
+        overflow-x: hidden;
+      }
+      body.dark-mode {
+        color: var(--secondary);
+        background-color: var(--dark);
+      }
+      .container {
+        display: flex;
+        min-height: 100vh;
+      }
+      .profile {
+        width: 50vw;
+        height: 100vh;
+        position: fixed;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+        color: white;
+      }
+      .profile-content {
+        max-width: 80%;
+      }
+      .avatar {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid var(--secondary);
+        margin-bottom: 1.5rem;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+      .name {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+      .title {
+        font-size: 1.2rem;
+        color: var(--secondary);
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+      }
+      .bio {
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+      }
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+      }
+      .social-links a {
+        color: white;
+        font-size: 1.5rem;
+        transition: transform 0.3s, color 0.3s;
+      }
+      .social-links a:hover {
+        color: var(--secondary);
+        transform: translateY(-3px);
+      }
+      .content {
+        width: 50vw;
+        margin-left: 50vw;
+        padding: 4rem;
+        background-color: var(--light);
+      }
+      .dark-mode .content {
+        background-color: var(--dark);
+      }
+      section {
+        min-height: 100vh;
+        padding: 2rem 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      section:not(:last-child) {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      .dark-mode section:not(:last-child) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        color: var(--primary-dark);
+        position: relative;
+        display: inline-block;
+      }
+      .dark-mode .section-title {
+        color: var(--primary);
+      }
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background-color: var(--primary);
+      }
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+      .project-card {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .dark-mode .project-card {
+        background-color: #2d3748;
+      }
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+      .project-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .project-info {
+        padding: 1.5rem;
+      }
+      .project-title {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        color: var(--primary-dark);
+      }
+      .dark-mode .project-title {
+        color: var(--primary);
+      }
+      .project-description {
+        color: var(--gray);
+        margin-bottom: 1rem;
+      }
+      .project-links {
+        display: flex;
+        gap: 1rem;
+      }
+      .project-links a {
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+      }
+      .live-demo {
+        background-color: var(--button-dark);
+        color: white;
+        border: 1px solid var(--button-dark);
+      }
+      .live-demo:hover {
+        background-color: var(--button-darker);
+        border-color: var(--button-darker);
+      }
+      .source-code {
+        background-color: transparent;
+        color: var(--button-dark);
+        border: 1px solid var(--button-dark);
+      }
+      .dark-mode .source-code {
+        color: var(--primary);
+        border-color: var(--primary);
+      }
+      .source-code:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+      .dark-mode .source-code:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+      .skills-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1.5rem;
+      }
+      .skill-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem 1rem;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+      .dark-mode .skill-item {
+        background-color: #2d3748;
+      }
+      .skill-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--primary-dark);
+      }
+      .dark-mode .skill-icon {
+        color: var(--primary);
+      }
+      .skill-name {
+        font-weight: 600;
+      }
+      .about-text {
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+        line-height: 1.8;
+      }
+      .contact-form {
+        display: grid;
+        gap: 1.5rem;
+        max-width: 600px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .form-group label {
+        font-weight: 500;
+      }
+      .form-group input,
+      .form-group textarea {
+        padding: 0.8rem 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 1rem;
+        background-color: white;
+      }
+      .dark-mode .form-group input,
+      .dark-mode .form-group textarea {
+        background-color: #2d3748;
+        border-color: #4a5568;
+        color: white;
+      }
+      .form-group textarea {
+        min-height: 150px;
+        resize: vertical;
+      }
+      .submit-btn {
+        padding: 1rem 2rem;
+        background-color: var(--button-dark);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .submit-btn:hover {
+        background-color: var(--button-darker);
+      }
+      .theme-toggle {
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+        background-color: var(--light);
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+      }
+      .dark-mode .theme-toggle {
+        background-color: var(--dark);
+        color: var(--primary);
+        border: 1px solid var(--primary);
+      }
+      .theme-toggle i {
+        font-size: 1.2rem;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .fade-in {
+        animation: fadeIn 0.8s ease-out forwards;
+      }
+      @media (max-width: 992px) {
+        .container {
+          flex-direction: column;
+        }
+        .profile {
+          position: relative;
+          width: 100%;
+          height: auto;
+          padding: 3rem 1rem;
+        }
+        .content {
+          width: 100%;
+          margin-left: 0;
+          padding: 2rem;
+        }
+        section {
+          min-height: 0;
+          padding: 3rem 0;
+        }
+        .profile-content {
+          max-width: 100%;
+        }
+        .theme-toggle {
+          top: 1rem;
+          right: 1rem;
+        }
+      }
+      @media (max-width: 576px) {
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+        .skills-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .content {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="profile">
+        <div class="profile-content">
+          <img
+            src="WhatsApp Image 2025-06-21 at 12.29.41 AM.jpeg"
+            alt="Avinash Markad"
+            class="avatar"
+            width="180"
+            height="180"
+          />
+          <h1 class="name">Avinash Markad</h1>
+          <p class="title">
+            Full Stack Developer | NLP Engineer | Data Scientist
+          </p>
+          <p class="bio">
+            Building intelligent web applications that combine full-stack
+            engineering with NLP and data science.
+          </p>
+          <div class="social-links">
+            <a
+              href="https://github.com/AvinashMarkad"
+              aria-label="GitHub"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/markad-avinash-8b5816262/"
+              aria-label="LinkedIn"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+            <a
+              href="#"
+              aria-label="Twitter"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a
+              href="#"
+              aria-label="CodePen"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><i class="fab fa-codepen"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <section id="projects">
+          <h2 class="section-title">My Projects</h2>
+          <div class="projects-grid">
+            <div class="project-card fade-in">
+              <img
+                src="interview.png"
+                alt="E-Commerce Website"
+                class="project-image"
+                width="600"
+                height="400"
+                loading="lazy"
+              />
+              <div class="project-info">
+                <h3 class="project-title">
+                  AI-Powered & Feedback Practice on Real Interview
+                </h3>
+                <p class="project-description">
+                  Contributed to frontend development using Next.js. Built
+                  dynamic UI components, integrated RESTful APIs, and delivered
+                  seamless end-to-end user experiences.
+                </p>
+                <div class="project-links">
+                  <div class="project-links">
+                    <a
+                      href="https://ai-mock-interview-platform-alpha.vercel.app/sign-in"
+                      class="live-demo"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Live Demo</a
+                    >
+
+                    <a
+                      href="https://github.com/AvinashMarkad/AI-Mock-Interview-Platform.git"
+                      class="source-code"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Source Code</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="project-card fade-in">
+              <img
+                src="blog.png"
+                alt="Task Management App"
+                class="project-image"
+                width="600"
+                height="400"
+                loading="lazy"
+              />
+              <div class="project-info">
+                <h3 class="project-title">Updats. Videos & Blog</h3>
+                <p class="project-description">
+                  Stay informed with the latest updates, watch engaging videos, and explore insightful blog posts. This section keeps you connected with all the newest content in one place.
+                </p>
+                <div class="project-links">
+                  <a href="https://blog-hosting-liart.vercel.app/" class="live-demo" target="_blank"
+                      rel="noopener noreferrer">Live Demo</a>
+                  <a href="https://github.com/AvinashMarkad/Blog-Hosting.git" class="source-code" target="_blank"
+                      rel="noopener noreferrer">Source Code</a>
+                </div>
+              </div>
+            </div>
+            <div class="project-card fade-in">
+              <img
+                src="https://via.placeholder.com/600x400?text=Project+3"
+                alt="Weather Dashboard"
+                class="project-image"
+                width="600"
+                height="400"
+                loading="lazy"
+              />
+              <div class="project-info">
+                <h3 class="project-title">Weather Dashboard</h3>
+                <p class="project-description">
+                  Real-time weather information with 5-day forecast using API
+                  integration.
+                </p>
+                <div class="project-links">
+                  <a href="#" class="live-demo">Live Demo</a>
+                  <a href="#" class="source-code">Source Code</a>
+                </div>
+              </div>
+            </div>
+            <div class="project-card fade-in">
+              <img
+                src="https://via.placeholder.com/600x400?text=Project+4"
+                alt="Recipe Finder"
+                class="project-image"
+                width="600"
+                height="400"
+                loading="lazy"
+              />
+              <div class="project-info">
+                <h3 class="project-title">Recipe Finder</h3>
+                <p class="project-description">
+                  Search engine for recipes with filtering by dietary
+                  restrictions.
+                </p>
+                <div class="project-links">
+                  <a href="#" class="live-demo">Live Demo</a>
+                  <a href="#" class="source-code">Source Code</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- skills section start here -->
+        <section id="skills">
+          <h2 class="section-title">My Skills</h2>
+          <div class="skills-container">
+            <!-- Languages -->
+            <div class="skill-item fade-in">
+              <i class="fab fa-js skill-icon" aria-hidden="true"></i>
+              <span class="skill-name">JavaScript</span>
+            </div>
+            <div class="skill-item fade-in">
+              <i class="fab fa-python skill-icon" aria-hidden="true"></i>
+              <span class="skill-name">Python</span>
+            </div>
+
+            <!-- Frameworks -->
+            <div class="skill-item fade-in">
+              <i class="fab fa-react skill-icon" aria-hidden="true"></i>
+              <span class="skill-name">React.js</span>
+            </div>
+            <div class="skill-item fade-in">
+              <i class="fab fa-js skill-icon" aria-hidden="true"></i>
+              <span class="skill-name">Next.js</span>
+            </div>
+            <div class="skill-item fade-in">
+              <i class="fab fa-python skill-icon" aria-hidden="true"></i>
+              <span class="skill-name">Django</span>
+            </div>
+
+            <!-- Web Technologies -->
+            <div class="skill-item fade-in">
+              <i class="fab fa-html5 skill-icon" aria-hidden="true"></i>
+              <span class="skill-name">HTML5</span>
+            </div>
+            <div class="skill-item fade-in">
+              <i class="fab fa-css3-alt skill-icon" aria-hidden="true"></i>
+              <span class="skill-name">CSS3</span>
+            </div>
+            <div class="skill-item fade-in">
+              <i class="fab fa-bootstrap skill-icon" aria-hidden="true"></i>
+              <span class="skill-name">Bootstrap</span>
+            </div>
+            <div class="skill-item fade-in">
+              <i class="fas fa-route skill-icon" aria-hidden="true"></i>
+              <span class="skill-name">React Router</span>
+            </div>
+
+            <!-- Tools -->
+            <div class="skill-item fade-in">
+              <i class="fas fa-code skill-icon" aria-hidden="true"></i>
+              <span class="skill-name">VS Code</span>
+            </div>
+            <div class="skill-item fade-in">
+              <i class="fab fa-git-alt skill-icon" aria-hidden="true"></i>
+              <span class="skill-name">Git</span>
+            </div>
+            <div class="skill-item fade-in">
+              <i class="fab fa-github skill-icon" aria-hidden="true"></i>
+              <span class="skill-name">GitHub</span>
+            </div>
+            <div class="skill-item fade-in">
+              <i class="fas fa-tasks skill-icon" aria-hidden="true"></i>
+              <span class="skill-name">ClickUp</span>
+            </div>
+
+            <!-- Other Skills -->
+            <div class="skill-item fade-in">
+              <i class="fas fa-lightbulb skill-icon" aria-hidden="true"></i>
+              <span class="skill-name">Problem Solving</span>
+            </div>
+            <div class="skill-item fade-in">
+              <i class="fas fa-brain skill-icon" aria-hidden="true"></i>
+              <span class="skill-name">NLP</span>
+            </div>
+            <div class="skill-item fade-in">
+              <i class="fas fa-database skill-icon" aria-hidden="true"></i>
+              <span class="skill-name">Data Science</span>
+            </div>
+            <div class="skill-item fade-in">
+              <i class="fas fa-robot skill-icon" aria-hidden="true"></i>
+              <span class="skill-name">Generative AI</span>
+            </div>
+          </div>
+        </section>
+        <!-- skills section end here -->
+        <section id="about">
+          <h2 class="section-title">About Me</h2>
+          <div class="about-content">
+            <p class="about-text fade-in">
+              I'm a passionate full-stack developer currently pursuing my B.E.
+              in Computer Engineering with a focus on building scalable web
+              applications and AI-powered platforms. I specialize in JavaScript,
+              Python, React.js, and Django, with strong expertise in creating
+              intuitive user interfaces combined with robust backend systems.
+            </p>
+
+            <p class="about-text fade-in">
+              My technical journey began with my Diploma in Computer
+              Engineering, where I gained hands-on experience in web
+              development. Since then, I've worked professionally with Next.js
+              and TypeScript at GrapeDawn.Tech, and developed projects like an
+              AI Interview Platform with NLP capabilities and a Food Delivery
+              Web App with React.
+            </p>
+
+            <p class="about-text fade-in">
+              I have a keen interest in NLP and Generative AI, demonstrated by
+              my research in document verification using HSI algorithms and
+              development of intelligent systems. My approach combines
+              problem-solving skills with modern web technologies to create
+              efficient, user-friendly solutions.
+            </p>
+
+            <p class="about-text fade-in">
+              When I'm not coding, you can find me exploring new technologies,
+              contributing to open-source projects, or expanding my knowledge in
+              data science and AI. I also enjoy hiking and reading about
+              emerging tech trends in my free time.
+            </p>
+          </div>
+        </section>
+
+        <section id="contact">
+          <h2 class="section-title">Get In Touch</h2>
+
+          <div class="contact-options">
+            <!-- Email Button -->
+            <a
+              href="mailto:avinashmarkad4030@gmail.com"
+              class="contact-btn fade-in"
+            >
+              <i class="fas fa-envelope"></i> Email Me
+            </a>
+
+            <!-- WhatsApp Button -->
+            <a
+              href="https://wa.me/918329954030"
+              class="contact-btn fade-in"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+
+            <!-- LinkedIn Button -->
+            <a
+              href="https://www.linkedin.com/in/markad-avinash-8b5816262/"
+              class="contact-btn fade-in"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+          </div>
+
+          <!-- Optional: Keep the form if you still want it -->
+          <form class="contact-form" style="margin-top: 2rem">
+            <!-- Your existing form fields -->
+            <div class="form-group fade-in">
+              <label for="message">Quick Message</label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Type a quick message here..."
+              ></textarea>
+            </div>
+            <a
+              href="mailto:avinashmarkad4030@gmail.com?body=Your%20message%20here"
+              class="submit-btn fade-in"
+              id="send-email-btn"
+            >
+              <i class="fas fa-paper-plane"></i> Send via Email
+            </a>
+          </form>
+        </section>
+
+        <style>
+          .contact-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+          }
+
+          .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+          }
+
+          .contact-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+          }
+
+          .contact-btn i {
+            font-size: 1.2rem;
+          }
+
+          #send-email-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+          }
+        </style>
+
+        <script>
+          // For the email button with pre-filled message
+          document
+            .getElementById("send-email-btn")
+            .addEventListener("click", function (e) {
+              const message = document.getElementById("message").value;
+              if (message.trim() !== "") {
+                this.href = `mailto:avinashmarkad4030@gmail.com?body=${encodeURIComponent(
+                  message
+                )}`;
+              } else {
+                e.preventDefault();
+                alert("Please enter a message first");
+              }
+            });
+        </script>
+      </div>
+
+      <button class="theme-toggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <script>
+      // Theme toggle
+      const themeToggle = document.querySelector(".theme-toggle");
+      const body = document.body;
+      const icon = themeToggle.querySelector("i");
+      const savedTheme = localStorage.getItem("theme");
+      const systemPrefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+
+      if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
+        body.classList.add("dark-mode");
+        icon.classList.replace("fa-moon", "fa-sun");
+      }
+
+      themeToggle.addEventListener("click", () => {
+        body.classList.toggle("dark-mode");
+        if (body.classList.contains("dark-mode")) {
+          icon.classList.replace("fa-moon", "fa-sun");
+          localStorage.setItem("theme", "dark");
+        } else {
+          icon.classList.replace("fa-sun", "fa-moon");
+          localStorage.setItem("theme", "light");
+        }
+      });
+
+      // Scroll animation
+      const fadeElements = document.querySelectorAll(".fade-in");
+      const fadeInOnScroll = () => {
+        const windowHeight = window.innerHeight;
+        fadeElements.forEach((element) => {
+          if (element.getBoundingClientRect().top < windowHeight - 100) {
+            element.style.opacity = "1";
+            element.style.transform = "translateY(0)";
+          }
+        });
+      };
+
+      fadeElements.forEach((element) => {
+        element.style.opacity = "0";
+        element.style.transform = "translateY(20px)";
+      });
+
+      window.addEventListener("load", fadeInOnScroll);
+      window.addEventListener("scroll", fadeInOnScroll);
+
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
+0
